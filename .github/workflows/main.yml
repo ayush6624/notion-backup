@@ -26,4 +26,4 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy export.zip personal:/notion-backup
+          args: copy export*.zip personal:/notion-backup
