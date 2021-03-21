@@ -54,14 +54,14 @@ def export(format: str):
     export_url = task.get('status').get('exportURL')
     print(f'\n {format} export created, downloading...')
 
-    urllib.request.urlretrieve(
-        export_url, EXPORT_FILENAME,
-        reporthook=lambda c, bs, ts: print(
-            f"\r{int(c * bs * 100 / ts)}%", end="")
-    )
+    urllib.request.urlretrieve(export_url, EXPORT_FILENAME)
     print(f'\nDownload complete:')
     if IS_CI == False:
         print(EXPORT_FILENAME)
+
+    f = open("download.txt", "a")
+    f.write(EXPORT_FILENAME + "\n")
+    f.close()
 
 
 if __name__ == "__main__":

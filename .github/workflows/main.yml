@@ -7,7 +7,7 @@ on:
   
   schedule:
   - cron: "0 0 */4 * *"
-  
+
   workflow_dispatch:
 
 jobs:
@@ -29,4 +29,4 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy --include "export*" . personal:/notion-backup
+          args: copy --files-from "download.txt" . personal:/notion-backup
