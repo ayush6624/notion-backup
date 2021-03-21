@@ -4,7 +4,10 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
+  
+  schedule:
+  - cron: "0 0 */4 * *"
+  
   workflow_dispatch:
 
 jobs:
@@ -26,4 +29,4 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy export*.zip personal:/notion-backup
+          args: copy --include "export*" . personal:/notion-backup
